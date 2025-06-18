@@ -17,6 +17,10 @@ export default function TaskList() {
     if (e.key === "Enter") addTask();
   };
 
+  const removeTask = (index) => {
+    setTasks(tasks.filter((_, i) => i !== index));
+  };
+
   return (
     <div className="mb-4">
       <div className="flex mb-2">
@@ -36,8 +40,14 @@ export default function TaskList() {
       </div>
       <ul className="list-disc pl-5 text-gray-700">
         {tasks.map((task, index) => (
-          <li key={index} className="mb-1">
+          <li key={index} className="mb-1 flex justify-between">
             {task}
+            <button
+              className="ml-2 text-red-500 hover:text-red-700"
+              onClick={() => removeTask(index)}
+            >
+              ×
+            </button>
           </li>
         ))}
       </ul>
